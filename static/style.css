@@ -1,0 +1,10 @@
+body {
+  font-family: system-ui, sans-serif;
+  padding: 40px;
+}
+
+nav a {
+  margin-right: 16px;
+  font-weight: 600;
+  text-decoration: none;
+}
