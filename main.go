@@ -13,9 +13,12 @@ type PageData struct {
 func render(w http.ResponseWriter, page string, data PageData) {
 	tmpl := template.Must(template.ParseFiles(
 		"templates/base.html",
-		"templates/" + page + ".html",
+		"templates/"+page+".html",
 	))
-	tmpl.ExecuteTemplate(w, "base", data)
+	if err := tmpl.ExecuteTemplate(w, "base", data); err != nil {
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		log.Printf("template execution failed: %v", err)
+	}
 }
 
 func main() {
